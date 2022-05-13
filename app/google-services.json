@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "120349045081",
+    "project_id": "batiknusantara-edc46",
+    "storage_bucket": "batiknusantara-edc46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120349045081:android:5a60e4b04c87bec1171c48",
+        "android_client_info": {
+          "package_name": "com.dimaszulfa.batiknusantara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120349045081-qaikajjj6op6hmu8ihl4eoai6mvppm8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dimaszulfa.batiknusantara",
+            "certificate_hash": "d9b0fcb97fe4951dfbd00f0dc9546b62b3693d85"
+          }
+        },
+        {
+          "client_id": "120349045081-fj0u81tpbfvvd1c1efat4i9b6haoc44p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgOq_iYl3n_G2wBkS4RAqi6Lc_5XwFP2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120349045081-fj0u81tpbfvvd1c1efat4i9b6haoc44p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
