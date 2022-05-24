@@ -2,4 +2,8 @@
     <string name="app_name">Batik Nusantara</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- pub mabox -->
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGltYXN6dWxmYSIsImEiOiJjbDM0cDE3ZWcwMDJ4M2J0NzgxeHZuMGFrIn0.MdOnMYS6jYl8ojkGokgfiQ</string>
+
+
 </resources>
