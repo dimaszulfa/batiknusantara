@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.dimaszulfa.batiknusantara.databinding.FragmentHomeBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -18,7 +20,7 @@ import com.google.firebase.ktx.Firebase
 class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
-
+    val auth = Firebase.auth
     private lateinit var binding : FragmentHomeBinding
     private val mainNavController: NavController? by lazy{ activity?.findNavController(R.id.nav_host)}
 
@@ -38,6 +40,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
         binding.cv1.setOnClickListener { // Cr
             val db = Firebase.firestore
 // eate a new user with a first and last name
@@ -57,37 +62,48 @@ class HomeFragment : Fragment() {
                     Log.w(TAG, "Error adding document", e)
                 }
         }
+
+        binding.cv1.setOnClickListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToHistoryFragment()
+
+            mainNavController?.navigate(directions)
+        }
+
         binding.cv2.setOnClickListener {
-
-            val docRef = db.collection("users").document("1rKC4FcDyfeJHGpj3kLE")
-            docRef.get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-//                        Log.d(ContentValues.TAG, "DocumentSnapshot data: ${document.data?.get("geopoint")}")
-                        val data = document.data?.get("geopoint") as List<*>
-
-                        data.forEach {
-                            Log.d(TAG, "DocumentSnapshot data: ${it}")
-
-                        }
-                    } else {
-                        Log.d(ContentValues.TAG, "No such document")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.d(ContentValues.TAG, "get failed with ", exception)
-                }
-
+            val directions = HomeFragmentDirections.actionHomeFragmentToUserMotiveFragment()
+            mainNavController?.navigate(directions)
         }
         binding.cv3.setOnClickListener {
             goToLocations()
         }
         binding.cv4.setOnClickListener {
-            goToQuiz()
+//            goToQuiz()
+            var directions: NavDirections
+            if (auth.currentUser == null ){
+                directions = HomeFragmentDirections.actionHomeFragmentToLoginFragment33()
+            } else {
+                directions = HomeFragmentDirections.actionHomeFragmentToMotiveFragment()
+            }
+            mainNavController?.navigate(directions)
+
+
+        }
+
+        binding.cv6.setOnClickListener {
+            goToAbout()
+        }
+
+        binding.cv5.setOnClickListener {
+            goToRegister()
         }
 
 
 
+    }
+
+    private fun goToRegister() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToRegisterFragment()
+        mainNavController?.navigate(direction)
     }
 
     private fun goToLocations() {
@@ -98,6 +114,11 @@ class HomeFragment : Fragment() {
     private fun goToQuiz(){
         val directions = HomeFragmentDirections.actionHomeFragmentToQuizFragment()
 
+        mainNavController?.navigate(directions)
+    }
+
+    private fun goToAbout(){
+        val directions = HomeFragmentDirections.actionHomeFragmentToAboutFragment()
         mainNavController?.navigate(directions)
     }
 

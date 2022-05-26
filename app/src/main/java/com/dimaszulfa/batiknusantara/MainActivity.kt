@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dimaszulfa.batiknusantara.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,8 +20,4 @@ class MainActivity : AppCompatActivity() {
             toRegister()
         }*/
     }
-
-    private fun toRegister() {
-        val intent = Intent(this@MainActivity,RegisterActivity::class.java)
-        startActivity(intent)    }
 }
