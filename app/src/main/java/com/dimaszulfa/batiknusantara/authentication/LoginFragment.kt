@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.databinding.FragmentLoginBinding
+import com.dimaszulfa.batiknusantara.util.ErrorHandlerUtils
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -36,6 +37,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRegister.setOnClickListener {
+            ErrorHandlerUtils.validationText(binding.etEmail)
+            ErrorHandlerUtils.validationText(binding.etPassword)
             login()
         }
     }

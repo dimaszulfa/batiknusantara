@@ -44,9 +44,6 @@
             android:id="@+id/action_homeFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
@@ -58,6 +55,12 @@
         <action
             android:id="@+id/action_homeFragment_to_userMotiveFragment"
             app:destination="@id/userMotiveFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userHistoryFragment"
+            app:destination="@id/userHistoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dashboardAdminFragment"
+            app:destination="@id/dashboardAdminFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
@@ -74,11 +77,6 @@
         android:name="com.dimaszulfa.batiknusantara.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
-    <fragment
-        android:id="@+id/historyFragment"
-        android:name="com.dimaszulfa.batiknusantara.history.HistoryFragment"
-        android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.dimaszulfa.batiknusantara.authentication.RegisterFragment"
@@ -105,6 +103,9 @@
         <action
             android:id="@+id/action_dashboardAdminFragment_to_motiveFragment"
             app:destination="@id/motiveFragment" />
+        <action
+            android:id="@+id/action_dashboardAdminFragment_to_historyFragment2"
+            app:destination="@id/historyFragment2" />
     </fragment>
     <fragment
         android:id="@+id/motiveFragment"
@@ -116,4 +117,14 @@
         android:name="com.dimaszulfa.batiknusantara.motive.UserMotiveFragment"
         android:label="fragment_user_motive"
         tools:layout="@layout/fragment_user_motive" />
+    <fragment
+        android:id="@+id/userHistoryFragment"
+        android:name="com.dimaszulfa.batiknusantara.history.UserHistoryFragment"
+        android:label="fragment_user_history"
+        tools:layout="@layout/fragment_user_history" />
+    <fragment
+        android:id="@+id/historyFragment2"
+        android:name="com.dimaszulfa.batiknusantara.admin.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

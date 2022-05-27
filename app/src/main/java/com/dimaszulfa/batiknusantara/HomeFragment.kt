@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.cv1.setOnClickListener {
-            val directions = HomeFragmentDirections.actionHomeFragmentToHistoryFragment()
+            val directions = HomeFragmentDirections.actionHomeFragmentToUserHistoryFragment()
 
             mainNavController?.navigate(directions)
         }
@@ -82,7 +82,7 @@ class HomeFragment : Fragment() {
             if (auth.currentUser == null ){
                 directions = HomeFragmentDirections.actionHomeFragmentToLoginFragment33()
             } else {
-                directions = HomeFragmentDirections.actionHomeFragmentToMotiveFragment()
+                directions = HomeFragmentDirections.actionHomeFragmentToDashboardAdminFragment()
             }
             mainNavController?.navigate(directions)
 
