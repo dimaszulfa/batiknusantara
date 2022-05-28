@@ -39,6 +39,10 @@ class DashboardAdminFragment : Fragment() {
         binding.btnHistory.setOnClickListener {
             toHistoryFragment()
         }
+
+        binding.btnQuiz.setOnClickListener {
+            toQuizFragment()
+        }
     }
 
     private fun toHistoryFragment() {
@@ -51,6 +55,12 @@ class DashboardAdminFragment : Fragment() {
         val directions =
             DashboardAdminFragmentDirections.actionDashboardAdminFragmentToMotiveFragment()
         mainNavController?.navigate(directions)
+    }
+
+    private fun toQuizFragment(){
+        val directions = DashboardAdminFragmentDirections.actionDashboardAdminFragmentToListQuizFragment()
+        mainNavController?.navigate(directions)
+
     }
 
 }
