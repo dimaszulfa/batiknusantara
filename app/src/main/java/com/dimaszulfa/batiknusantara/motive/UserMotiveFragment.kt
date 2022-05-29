@@ -19,7 +19,8 @@ class UserMotiveFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
     private lateinit var motiveArrayList: ArrayList<MotiveEntity>
-    private lateinit var binding: FragmentUserMotiveBinding
+    private var _binding: FragmentUserMotiveBinding ?= null
+    val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class UserMotiveFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         database = Firebase.database.reference
-        binding = FragmentUserMotiveBinding.inflate(inflater)
+        _binding = FragmentUserMotiveBinding.inflate(inflater)
         binding.rvMotive.layoutManager = binding.rvMotive.getCarouselLayoutManager()
         binding.rvMotive.setHasFixedSize(true)
         binding.rvMotive.apply {
@@ -69,6 +70,11 @@ class UserMotiveFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

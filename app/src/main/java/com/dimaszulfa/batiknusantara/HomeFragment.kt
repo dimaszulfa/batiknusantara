@@ -21,7 +21,8 @@ class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
     val auth = Firebase.auth
-    private lateinit var binding : FragmentHomeBinding
+    private var _binding : FragmentHomeBinding ?=null
+    val binding get() = _binding!!
     private val mainNavController: NavController? by lazy{ activity?.findNavController(R.id.nav_host)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -120,6 +121,11 @@ class HomeFragment : Fragment() {
     private fun goToAbout(){
         val directions = HomeFragmentDirections.actionHomeFragmentToAboutFragment()
         mainNavController?.navigate(directions)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
