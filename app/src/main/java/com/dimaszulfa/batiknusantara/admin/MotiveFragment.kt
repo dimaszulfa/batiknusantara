@@ -90,7 +90,7 @@ class MotiveFragment : Fragment() {
             storage.child(key + ".jpg").downloadUrl.addOnSuccessListener {
                 val image = it.toString()
                 val motiveData = MotiveEntity(title, desc, image)
-                database.child("motive").child(title).setValue(motiveData).addOnSuccessListener {
+                database.child("motive").child(key!!).setValue(motiveData).addOnSuccessListener {
                     Toast.makeText(requireContext(),"Berhasil Menambahkan Motif!", Toast.LENGTH_SHORT).show()
                 }
             }
