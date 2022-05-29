@@ -62,6 +62,12 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/spCorrect"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         style="?attr/selectableItemBackground"
         android:background="@drawable/button_hover"
@@ -69,5 +75,7 @@
         android:text="Tambahkan Data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
 
 </LinearLayout>
