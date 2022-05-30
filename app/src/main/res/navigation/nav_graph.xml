@@ -119,7 +119,11 @@
         android:id="@+id/userMotiveFragment"
         android:name="com.dimaszulfa.batiknusantara.motive.UserMotiveFragment"
         android:label="fragment_user_motive"
-        tools:layout="@layout/fragment_user_motive" />
+        tools:layout="@layout/fragment_user_motive" >
+        <action
+            android:id="@+id/action_userMotiveFragment_to_userMotiveDetail"
+            app:destination="@id/userMotiveDetail" />
+    </fragment>
     <fragment
         android:id="@+id/userHistoryFragment"
         android:name="com.dimaszulfa.batiknusantara.history.UserHistoryFragment"
@@ -143,5 +147,16 @@
         android:id="@+id/addQuizBottomSheetDialog2"
         android:name="com.dimaszulfa.batiknusantara.admin.AddQuizBottomSheetDialog"
         android:label="fragment_add_quiz_bottom_sheet_dialog"
-        tools:layout="@layout/fragment_add_quiz_bottom_sheet_dialog" />
+        tools:layout="@layout/fragment_add_quiz_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_addQuizBottomSheetDialog2_to_listQuizFragment"
+            app:destination="@id/listQuizFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/userMotiveDetail"
+        android:name="com.dimaszulfa.batiknusantara.motive.UserMotiveDetail"
+        android:label="fragment_user_motive_detail"
+        tools:layout="@layout/fragment_user_motive_detail">
+    </fragment>
+
 </navigation>

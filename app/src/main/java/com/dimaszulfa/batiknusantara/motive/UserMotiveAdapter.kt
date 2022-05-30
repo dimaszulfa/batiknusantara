@@ -1,14 +1,16 @@
 package com.dimaszulfa.batiknusantara.motive
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
 import com.dimaszulfa.batiknusantara.databinding.ItemUserMotiveBinding
 
-class UserMotiveAdapter(private val context: Context, private val data: ArrayList<MotiveEntity>) :
+class UserMotiveAdapter(private val context: Context, private val data: ArrayList<MotiveEntity>, val onClick: (MotiveEntity) -> Unit) :
     RecyclerView.Adapter<UserMotiveAdapter.ViewHolder>() {
     inner class ViewHolder(binding: ItemUserMotiveBinding) : RecyclerView.ViewHolder(binding.root) {
         var title = binding.txTitle
@@ -23,8 +25,8 @@ class UserMotiveAdapter(private val context: Context, private val data: ArrayLis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val list = data[position]
         with(holder) {
-            holder.title.text = list.title
-            Glide.with(context).load(list.image).into(holder.image)
+            title.text = list.title
+            Glide.with(context).load(list.image).into(image)
         }
     }
 

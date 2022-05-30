@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
 import com.dimaszulfa.batiknusantara.databinding.FragmentUserMotiveBinding
@@ -21,6 +23,7 @@ class UserMotiveFragment : Fragment() {
     private lateinit var motiveArrayList: ArrayList<MotiveEntity>
     private var _binding: FragmentUserMotiveBinding ?= null
     val binding get() = _binding!!
+    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +64,14 @@ class UserMotiveFragment : Fragment() {
                         val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
                         motiveArrayList.add(motive!!)
                     }
-                    binding.rvMotive.adapter = UserMotiveAdapter(requireContext(),motiveArrayList)
+                    binding.rvMotive.adapter = UserMotiveAdapter(requireContext(),motiveArrayList){ data ->
+                        Bundle().apply {
+                            putParcelable("MOTIVE_DATA", data)
+                        }.also {
+                            mainNavController?.navigate(R.id.action_userMotiveFragment_to_userMotiveDetail, it)
+                            Toast.makeText(requireContext(),"ASDASAD", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
 
