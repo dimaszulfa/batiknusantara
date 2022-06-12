@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.motive
+package com.dimaszulfa.batiknusantara.user.motive
 
 import android.os.Bundle
 import android.util.Log
@@ -52,8 +52,24 @@ class UserMotiveFragment : Fragment() {
 
         motiveArrayList = arrayListOf<MotiveEntity>()
         getMotiveData()
-
+        getMotiveChild()
     }
+
+    private fun getMotiveChild() {
+        database = FirebaseDatabase.getInstance().getReference("motive")
+        database.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(motiveChild in snapshot.children){
+                        Log.d("TAG", motiveChild.child("title").getValue().toString())
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }) }
 
     private fun getMotiveData() {
         database = FirebaseDatabase.getInstance().getReference("motive")
@@ -64,14 +80,7 @@ class UserMotiveFragment : Fragment() {
                         val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
                         motiveArrayList.add(motive!!)
                     }
-                    binding.rvMotive.adapter = UserMotiveAdapter(requireContext(),motiveArrayList){ data ->
-                        Bundle().apply {
-                            putParcelable("MOTIVE_DATA", data)
-                        }.also {
-                            mainNavController?.navigate(R.id.action_userMotiveFragment_to_userMotiveDetail, it)
-                            Toast.makeText(requireContext(),"ASDASAD", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                    binding.rvMotive.adapter = UserMotiveAdapter(requireContext(),motiveArrayList)
                 }
             }
 
