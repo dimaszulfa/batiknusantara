@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.history
+package com.dimaszulfa.batiknusantara.user.history
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.HistoryEntity
 import com.dimaszulfa.batiknusantara.databinding.FragmentUserHistoryBinding
 import com.google.firebase.database.*
@@ -28,6 +27,7 @@ class UserHistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentUserHistoryBinding.inflate(layoutInflater)
         db = Firebase.database.reference
+        binding.pgProgressBar.visibility = View.VISIBLE
         return binding.root
     }
 
@@ -37,6 +37,7 @@ class UserHistoryFragment : Fragment() {
         db.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    binding.pgProgressBar.visibility = View.INVISIBLE
                     for(history in snapshot.children){
                         val data = history.getValue<HistoryEntity>()
                         binding.txTitle.text = data!!.title

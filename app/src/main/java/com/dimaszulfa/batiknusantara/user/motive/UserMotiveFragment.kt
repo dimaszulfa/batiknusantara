@@ -37,6 +37,7 @@ class UserMotiveFragment : Fragment() {
         // Inflate the layout for this fragment
         database = Firebase.database.reference
         _binding = FragmentUserMotiveBinding.inflate(inflater)
+        binding.pgProgressBar.visibility = View.VISIBLE
         binding.rvMotive.layoutManager = binding.rvMotive.getCarouselLayoutManager()
         binding.rvMotive.setHasFixedSize(true)
         binding.rvMotive.apply {
@@ -60,6 +61,7 @@ class UserMotiveFragment : Fragment() {
         database.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    binding.pgProgressBar.visibility = View.GONE
                     for(motiveChild in snapshot.children){
                         Log.d("TAG", motiveChild.child("title").getValue().toString())
                     }

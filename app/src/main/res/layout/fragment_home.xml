@@ -156,7 +156,7 @@
                     <ImageView
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:background="@drawable/ic_globalization_pana" />
+                        android:background="@drawable/batik_type" />
 
                     <TextView
                         android:textColor="@color/black"
@@ -164,7 +164,7 @@
                         android:layout_margin="8dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Tempat" />
+                        android:text="Jenis Batik" />
 
                 </LinearLayout>
 
@@ -232,7 +232,7 @@
                     <ImageView
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:background="@drawable/podium" />
+                        android:background="@drawable/puzzle" />
 
                     <TextView
                         android:textColor="@color/black"
@@ -240,7 +240,7 @@
                         android:layout_margin="8dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Leaderboards" />
+                        android:text="Puzzle" />
 
                 </LinearLayout>
 
@@ -268,6 +268,83 @@
                     <ImageView
                         android:layout_width="96dp"
                         android:layout_height="96dp"
+                        android:background="@drawable/technic" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="13sp"
+                        android:text="Teknik Pembuatan" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv7"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="30dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cv8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_button"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:background="@drawable/cleaning" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Cara Merawat" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv8"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="30dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cv7"
+                app:layout_constraintTop_toBottomOf="@id/cv6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_button"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
                         android:background="@drawable/about" />
 
                     <TextView
@@ -280,6 +357,7 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

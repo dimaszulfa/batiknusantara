@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".history.UserHistoryFragment">
+    tools:context=".user.history.UserHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -12,12 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Sejarah Indonesia Zaman" />
+        />
 
     <com.codesgood.views.JustifiedTextView
         android:layout_marginTop="40sp"
         android:id="@+id/txDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/pgProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

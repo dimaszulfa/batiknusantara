@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".about.AboutFragment"
+    android:orientation="vertical"
+    tools:context=".user.about.AboutFragment"
     android:padding="@dimen/dimen_16sp">
+
+    <Button
+        android:id="@+id/btnKmeans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test K mEANS"/>
 
     <!-- TODO: Update blank fragment layout -->
     <com.codesgood.views.JustifiedTextView
+        android:id="@+id/txAbout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Tari Saman tercatat di UNESCO sebagai Daftar Representatif Budaya Takbenda Warisan Manusia sejak 24 November 2011. Pada awalnya, Tari Saman merupakan salah satu media untuk menyampaikan pesan (dakwah) dan ditarikan oleh laki-laki. Tari ini mengandung pendidikan keagamaan, sopan santun, kepahlawanan, kekompakan, dan kebersamaan.
@@ -18,4 +26,4 @@ Kostum atau busana khusus Tari Saman terbagi menjadi tiga bagian. Pada bagian ke
 
 Penggunaan nyanyian, gerakan, hingga kostum penari pada Tari Saman sangat penting karena mengandung nilai-nilai yang menunjukkan identitas budaya, kekompakan, kebijakan, keperkasaan, keberanian, dan keharmonisan dari para pemakainya."/>
 
-</FrameLayout>
+</LinearLayout>

@@ -91,11 +91,6 @@ dependencies {
 
     implementation "androidx.preference:preference-ktx:1.2.0"
 
-    //mapbox
-    implementation 'com.mapbox.maps:android:10.5.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-core:3.1.0'
-    implementation("com.google.android.gms:play-services-location:19.0.1")
-
     //justifytext
     implementation 'com.codesgood:justifiedtextview:1.1.0'
 

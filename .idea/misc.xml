@@ -9,7 +9,8 @@
         <entry key="..\:/Skripsi/app/src/main/res/drawable/top_rounded.xml" value="0.1375" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_register.xml" value="0.1381340579710145" />
-        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_about.xml" value="0.3555253623188406" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/custom_button.xml" value="0.13" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_about.xml" value="0.307909604519774" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_add_quiz_bottom_sheet_dialog.xml" value="0.22" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_add_quiz_dialog_list_dialog.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_add_quiz_dialog_list_dialog_item.xml" value="0.1" />
@@ -21,14 +22,18 @@
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_location.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_login.xml" value="0.2210144927536232" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_motive.xml" value="0.2" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_quiz.xml" value="0.22" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_quiz_questions.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_register2.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_history.xml" value="0.25" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive_detail.xml" value="0.1" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_variety.xml" value="0.16894630192502533" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/item_introduction.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/item_user_motive.xml" value="0.15" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/item_user_variety.xml" value="0.22" />
       </map>
     </option>
   </component>

@@ -1,6 +1,5 @@
 package com.dimaszulfa.batiknusantara
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -21,9 +20,9 @@ class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
     val auth = Firebase.auth
-    private var _binding : FragmentHomeBinding ?=null
+    private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
-    private val mainNavController: NavController? by lazy{ activity?.findNavController(R.id.nav_host)}
+    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,12 +74,12 @@ class HomeFragment : Fragment() {
             mainNavController?.navigate(directions)
         }
         binding.cv3.setOnClickListener {
-            goToLocations()
+            goToVariety()
         }
-        binding.cv4.setOnClickListener {
+        binding.ivHeader.setOnClickListener {
 //            goToQuiz()
             var directions: NavDirections
-            if (auth.currentUser == null ){
+            if (auth.currentUser == null) {
                 directions = HomeFragmentDirections.actionHomeFragmentToLoginFragment33()
             } else {
                 directions = HomeFragmentDirections.actionHomeFragmentToDashboardAdminFragment()
@@ -88,6 +87,10 @@ class HomeFragment : Fragment() {
             mainNavController?.navigate(directions)
 
 
+        }
+
+        binding.cv4.setOnClickListener {
+            goToQuiz()
         }
 
         binding.cv6.setOnClickListener {
@@ -99,26 +102,24 @@ class HomeFragment : Fragment() {
         }
 
 
-
     }
+
+    private fun goToQuiz() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToQuizFragment2()
+        mainNavController?.navigate(direction)    }
 
     private fun goToRegister() {
         val direction = HomeFragmentDirections.actionHomeFragmentToRegisterFragment()
         mainNavController?.navigate(direction)
     }
 
-    private fun goToLocations() {
-        val direction = HomeFragmentDirections.actionHomeFragmentToLocationFragment()
-        mainNavController?.navigate(direction)
-    }
 
-    private fun goToQuiz(){
-        val directions = HomeFragmentDirections.actionHomeFragmentToQuizFragment()
-
+    private fun goToVariety() {
+        val directions = HomeFragmentDirections.actionHomeFragmentToUserVarietyFragment()
         mainNavController?.navigate(directions)
     }
 
-    private fun goToAbout(){
+    private fun goToAbout() {
         val directions = HomeFragmentDirections.actionHomeFragmentToAboutFragment()
         mainNavController?.navigate(directions)
     }
