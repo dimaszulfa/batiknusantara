@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.dimaszulfa.batiknusantara.QuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.user.quiz.QuizQuestionsFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment
@@ -183,6 +183,15 @@
         android:id="@+id/quizQuestionsFragment"
         android:name="com.dimaszulfa.batiknusantara.user.quiz.QuizQuestionsFragment"
         android:label="fragment_quiz_questions"
-        tools:layout="@layout/fragment_quiz_questions" />
+        tools:layout="@layout/fragment_quiz_questions" >
+        <action
+            android:id="@+id/action_quizQuestionsFragment_to_resultQuizFragment"
+            app:destination="@id/resultQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultQuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.user.quiz.ResultQuizFragment"
+        android:label="fragment_result_quiz"
+        tools:layout="@layout/fragment_result_quiz" />
 
 </navigation>

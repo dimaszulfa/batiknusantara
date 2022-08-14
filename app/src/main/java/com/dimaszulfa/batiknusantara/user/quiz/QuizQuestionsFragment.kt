@@ -10,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
 import com.dimaszulfa.batiknusantara.data.QuizEntity
@@ -25,11 +28,14 @@ val binding get() = _binding!!
 private lateinit var db : DatabaseReference
 private lateinit var dataQuiz: ArrayList<QuizEntity>
 private var mCurrentPosition: Int = 1
-private var mSelectedOptionPosition: Int = 0
-
+private var mSelectedOptionPosition: String = ""
+private var correctAnswer: Int = 0
+private var wrongAnswer: Int = 0
 //motiveArrayList = arrayListOf<MotiveEntity>()
 
+
 class QuizQuestionsFragment : Fragment(), View.OnClickListener {
+    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +46,6 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentQuizQuestionsBinding.inflate(layoutInflater)
         dataQuiz = arrayListOf<QuizEntity>()
         db = Firebase.database.reference
@@ -49,11 +54,17 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+
+    private fun goToResult() {
+        val directions = QuizQuestionsFragmentDirections.actionQuizQuestionsFragmentToResultQuizFragment()
+        mainNavController?.navigate(directions)
+    }
+
     private fun setQuestion() {
         txtViewSettings(true)
 
         val question = dataQuiz.get(mCurrentPosition - 1)
-
+        defaultOptionsView()
 
         if (mCurrentPosition == dataQuiz!!.size) {
             binding.btnSubmit.text = "Finish"
@@ -110,7 +121,7 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         _binding = null
         dataQuiz.clear()
         mCurrentPosition = 1
-        mSelectedOptionPosition = 0
+        mSelectedOptionPosition = ""
 
 
     }
@@ -118,19 +129,19 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_option_one -> {
-                selectedOptionView(binding.tvOptionOne, 1)
+                selectedOptionView(binding.tvOptionOne, binding.tvOptionOne.text.toString())
             }
             R.id.tv_option_two -> {
-                selectedOptionView(binding.tvOptionTwo, 2)
+                selectedOptionView(binding.tvOptionTwo,  binding.tvOptionTwo.text.toString())
             }
             R.id.tv_option_three -> {
-                selectedOptionView(binding.tvOptionThree, 3)
+                selectedOptionView(binding.tvOptionThree,  binding.tvOptionThree.text.toString())
             }
             R.id.tv_option_four -> {
-                selectedOptionView(binding.tvOptionFour, 4)
+                selectedOptionView(binding.tvOptionFour,  binding.tvOptionFour.text.toString())
             }
             R.id.btn_submit -> {
-                if (mSelectedOptionPosition == 0) {
+                if (mSelectedOptionPosition == "") {
                     mCurrentPosition++
 
                     when {
@@ -138,38 +149,69 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
                             setQuestion()
                         }
                         else -> {
+                            var hasil: Float = correctAnswer.toFloat()/20*100
                             Toast.makeText(
                                 requireContext(),
-                                "You have successfully completed the Quiz", Toast.LENGTH_SHORT
+                                hasil.toString() + "%", Toast.LENGTH_SHORT
                             ).show()
 //                            val intent = Intent(this,MainActivity::class.java)
 //                            startActivity(intent)
+                            goToResult()
                         }
                     }
                 } else {
                     val question = dataQuiz?.get(mCurrentPosition - 1)
-                    if (1 != mSelectedOptionPosition) {
-                        answerView(mSelectedOptionPosition)
-                    }
+//                    if (1 != mSelectedOptionPosition) {
+//                        answerView(mSelectedOptionPosition)
+//                    }
 //                    answerView(question.correctAnswer)
                     txtViewSettings(false)
+                    if (question.correctAnswer !=  mSelectedOptionPosition) {
+                        Toast.makeText(requireContext(), question!!.correctAnswer.toString(), Toast.LENGTH_SHORT).show()
+                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                        wrongAnswer
+                    }else{
+                        answerView(mSelectedOptionPosition, R.drawable.correct_option_border_bg)
+                        correctAnswer++
+                    }
                     if (mCurrentPosition == dataQuiz!!.size) {
                         binding.btnSubmit.text = "Finish"
                     } else {
                         binding.btnSubmit.text = "Go to next question"
                     }
-                    mSelectedOptionPosition = 0
+                    mSelectedOptionPosition = ""
                 }
 
             }
         }
     }
 
-    private fun answerView(mSelectedOptionPosition: Int) {
-
+    private fun answerView(mSelectedOptionPosition: String, drawableView: Int) {
+        when (mSelectedOptionPosition) {
+            binding.tvOptionOne.text.toString() -> {
+                binding.tvOptionOne.background = ContextCompat.getDrawable(
+                    requireContext(), drawableView
+                )
+            }
+            binding.tvOptionTwo.text.toString() -> {
+                binding.tvOptionTwo.background = ContextCompat.getDrawable(
+                    requireContext(), drawableView
+                )
+            }
+            binding.tvOptionThree.text.toString() -> {
+                binding.tvOptionThree.background = ContextCompat.getDrawable(
+                    requireContext(), drawableView
+                )
+            }
+            binding.tvOptionFour.text.toString() -> {
+                binding.tvOptionFour.background = ContextCompat.getDrawable(
+                    requireContext(), drawableView
+                )
+            }
+        }
     }
 
-    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
+    private fun selectedOptionView(tv: TextView, selectedOptionNum: String) {
         defaultOptionsView()
         mSelectedOptionPosition = selectedOptionNum
         tv.setTextColor(Color.parseColor("#363A43"))
@@ -188,6 +230,10 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         for (option in options) {
             option.setTextColor(Color.parseColor("#7A8089"))
             option.typeface = Typeface.DEFAULT
+            option.background = ContextCompat.getDrawable(
+                requireContext(),
+                R.color.colorSecondary
+            )
         }
 
 

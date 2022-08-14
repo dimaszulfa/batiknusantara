@@ -7,6 +7,7 @@
         <entry key="..\:/Skripsi/app/src/main/res/drawable/custom_button.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/drawable/ic_globalization_pana.xml" value="0.267" />
         <entry key="..\:/Skripsi/app/src/main/res/drawable/top_rounded.xml" value="0.1375" />
+        <entry key="..\:/Skripsi/app/src/main/res/drawable/wrong_option_border_bg.xml" value="0.124" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_register.xml" value="0.1381340579710145" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/custom_button.xml" value="0.13" />
@@ -26,6 +27,7 @@
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_quiz_questions.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_register2.xml" value="0.1" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_result_quiz.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_history.xml" value="0.25" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive.xml" value="0.1" />
