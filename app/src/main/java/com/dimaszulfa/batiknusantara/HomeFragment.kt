@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.cv5.setOnClickListener {
-            goToRegister()
+            goToPuzzle()
         }
 
 
@@ -108,8 +108,8 @@ class HomeFragment : Fragment() {
         val direction = HomeFragmentDirections.actionHomeFragmentToQuizFragment2()
         mainNavController?.navigate(direction)    }
 
-    private fun goToRegister() {
-        val direction = HomeFragmentDirections.actionHomeFragmentToRegisterFragment()
+    private fun goToPuzzle() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToNPuzzleActivity()
         mainNavController?.navigate(direction)
     }
 

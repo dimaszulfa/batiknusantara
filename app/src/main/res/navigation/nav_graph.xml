@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_quizFragment2"
             app:destination="@id/quizFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_NPuzzleActivity"
+            app:destination="@id/NPuzzleActivity" />
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
@@ -193,5 +196,9 @@
         android:name="com.dimaszulfa.batiknusantara.user.quiz.ResultQuizFragment"
         android:label="fragment_result_quiz"
         tools:layout="@layout/fragment_result_quiz" />
+    <activity
+        android:id="@+id/NPuzzleActivity"
+        android:name="com.dimaszulfa.batiknusantara.user.puzzle.NPuzzleActivity"
+        android:label="NPuzzleActivity" />
 
 </navigation>
