@@ -28,26 +28,23 @@
 
             <TextView
                 android:id="@+id/txWelcome"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivHeader"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Batik Nusantara"
+                android:text="Selamat datang di Aplikasi Batik"
                 android:fontFamily="@font/montserrat_bold"/>
             <ImageView
-                android:padding="32dp"
-                app:layout_constraintStart_toEndOf="@id/txWelcome"
                 android:id="@+id/ivHeader"
-                android:src="@drawable/ic_sitting_2"
+                android:src="@drawable/home_illustrator"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 />
             <!--                android:background="@drawable/welcome"-->
             <!--                />-->

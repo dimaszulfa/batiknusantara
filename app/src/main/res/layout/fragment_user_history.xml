@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@drawable/poster"
     android:layout_height="match_parent"
     tools:context=".user.history.UserHistoryFragment">
 
@@ -30,14 +31,26 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/txTitle"
+                    android:fontFamily="@font/soin"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:text="Sejarah Batik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@drawable/batik_for_history"/>
                 <com.codesgood.views.JustifiedTextView
                     android:layout_margin="25dp"
                     android:layout_marginTop="40sp"
                     android:id="@+id/txDesc"
+                    android:textColor="@color/black"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
