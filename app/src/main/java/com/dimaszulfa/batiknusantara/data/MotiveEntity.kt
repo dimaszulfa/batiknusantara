@@ -9,5 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class MotiveEntity(
     val title: String? = null,
     val description: String? = null,
-    val image: String? = null
+    val image: String? = null,
+    val province: String? = null,
+    val category: String? = null
 ): Parcelable

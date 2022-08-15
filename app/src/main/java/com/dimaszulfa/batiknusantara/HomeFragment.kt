@@ -94,11 +94,16 @@ class HomeFragment : Fragment() {
         }
 
         binding.cv6.setOnClickListener {
-            goToAbout()
+
         }
 
         binding.cv5.setOnClickListener {
             goToPuzzle()
+        }
+
+        binding.cv7.setOnClickListener {
+            goToAbout()
+
         }
 
 

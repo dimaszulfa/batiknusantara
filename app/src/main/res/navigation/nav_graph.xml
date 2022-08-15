@@ -168,6 +168,12 @@
         <argument
             android:name="image"
             app:argType="string"/>
+        <argument
+        android:name="category"
+        app:argType="string"/>
+        <argument
+            android:name="province"
+            app:argType="string"/>
     </fragment>
     <fragment
         android:id="@+id/userVarietyFragment"

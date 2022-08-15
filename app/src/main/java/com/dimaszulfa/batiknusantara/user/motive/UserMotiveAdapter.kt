@@ -30,6 +30,8 @@ class UserMotiveAdapter(private val context: Context, private val data: ArrayLis
             putString("title", list.title)
             putString("description", list.description)
             putString("image", list.image)
+            putString("province", list.province)
+            putString("category", list.category)
         }
         with(holder) {
             title.text = list.title

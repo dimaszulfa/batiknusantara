@@ -22,5 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"/>
-
+    <TextView
+        android:id="@+id/txProvince"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"/>
+    <TextView
+        android:id="@+id/txCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"/>
 </LinearLayout>

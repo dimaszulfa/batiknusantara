@@ -226,22 +226,7 @@
             app:layout_constraintStart_toStartOf="@id/gl_left_button"
             app:layout_constraintTop_toTopOf="@+id/btn_shuffle" />
 
-        <Button
-            android:id="@+id/btn_upload"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/btn_second"
-            android:fontFamily="@font/cairo_bold"
-            android:padding="8dp"
-            android:text="@string/upload_picture"
-            android:textColor="@color/btn_second_text"
-            android:visibility="visible"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/gl_right_button"
-            app:layout_constraintStart_toStartOf="@+id/gl_left_button"
-            app:layout_constraintTop_toBottomOf="@+id/btn_shuffle"
-            app:layout_constraintVertical_bias="0.05" />
+
 
         <Spinner
             android:id="@+id/spn_puzzle"
