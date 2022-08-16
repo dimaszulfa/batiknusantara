@@ -26,6 +26,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
@@ -54,6 +56,9 @@ class NPuzzleActivity : AppCompatActivity() {
         private const val DEFAULT_FASTEST_TIME = Long.MAX_VALUE
     }
 
+    private val _datagambar = MutableLiveData<ArrayList<MotiveEntity>>()
+    val datagambar: LiveData<ArrayList<MotiveEntity>>
+        get()= _datagambar
 
     private lateinit var database: DatabaseReference
     private lateinit var clRoot: ConstraintLayout
@@ -83,6 +88,8 @@ class NPuzzleActivity : AppCompatActivity() {
 //    private lateinit var puzzleImageChoices: ArrayList<MotiveEntity>
 
     var puzzleImageChoices = arrayListOf<MotiveEntity>()
+
+
     private var puzzleImageIndex: Int = 0
     private var indexOfCustom: Int = 0
     private var isGalleryImageChosen: Boolean = false
@@ -136,6 +143,8 @@ class NPuzzleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_n_puzzle)
         database = Firebase.database.reference
 
+        getMotiveData()
+        getMotiveChild()
         initComponents()
         initSharedPreferences()
         initHandlers()
@@ -175,9 +184,7 @@ class NPuzzleActivity : AppCompatActivity() {
                     for(motiveSnapshot in snapshot.children){
                         val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
                         puzzleImageChoices.add(motive!!)
-
-
-
+                        _datagambar.postValue(puzzleImageChoices)
                         Log.d("TAGGGG", puzzleImageChoices.toString())
                         Toast.makeText(this@NPuzzleActivity,"SUKSESS", Toast.LENGTH_LONG).show()
                     }
@@ -457,8 +464,11 @@ class NPuzzleActivity : AppCompatActivity() {
     private fun initPuzzleImage() {
         puzzleImageIndex = sp.getInt(Key.KEY_PUZZLE_IMAGE.name, 0)
         spnPuzzle.setSelection(puzzleImageIndex)
+
+        //test data arrayList
         Log.d("INITES", puzzleImageChoices.toString())
         Toast.makeText(this,puzzleImageChoices.size.toString(), Toast.LENGTH_SHORT).show()
+
         var dataBitmap = runBlocking(Dispatchers.IO) { dataBitmap() }
         puzzleImage = ImageUtil.resizeToSquareBitmap(
             dataBitmap,

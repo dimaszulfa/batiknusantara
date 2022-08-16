@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.VarietyEntity
+import com.dimaszulfa.batiknusantara.databinding.FragmentHomeBinding
 import com.dimaszulfa.batiknusantara.databinding.FragmentUserVarietyBinding
 
 
 
-    private lateinit var binding : FragmentUserVarietyBinding
+private var _binding: FragmentUserVarietyBinding? = null
+val binding get() = _binding!!
     private var data = arrayListOf(
         VarietyEntity("Batik Tulis/Canting", "Teknik pembuatan batik tulis atau canting adalah metode paling tua dan tradisional. Proses pembuatan batik masih menggunakan alat canting tradisional yang diisi dengan lilin panas sebelum digunakan untuk menggambar pola di atas kain. Setelah pola gambar ditutupi lilin, kemudian kain diwarnai. Bagian lilin kemudian dilepaskan dari kain. Dengan begitu, saat kain dimasukan dalam larutan pewarna, bagian yang tertutup lilin tidak terkena warna dan membentuk motif batik yang cantik. Teknik pembuatan batik dengan metode canting membutuhkan ketelitian tinggi. Tekstur dan motif batik dibuat manual menggunakan tangan. Tidak heran pembuatan batik dengan canting bisa memakan waktu 2 – 3 bulan. Meski begitu, harga batik tulis jauh lebih mahal dibanding batik biasa karena punya nilai seni tinggi.",false),
         VarietyEntity("Batik Cap", "Teknik pembuatan batik cap muncul sekitar abad ke-20. Metode ini tidak menggunakan canting, melainkan cap yang terbuat dari tembaga berukuran 20 x 20 cm. Bagian tengah cap memiliki motif ukiran batik. Stempel akan dicelupkan ke dalam cairan malam lalu ditekan dengan keras di atas kain. Proses pembuatan batik dengan metode cap tergolong modern. Cara pembuatannnya sama seperti saat kita menggunakan stempel. Kelebihan dari metode ini adalah membuat proses pengerjaan batik lebih cepat. Proses pembuatan batik cap hanya memakan waktu 2 – 3 hari tergantung luas kain.",false),
@@ -35,7 +37,7 @@ class UserVarietyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentUserVarietyBinding.inflate(layoutInflater)
+        _binding = FragmentUserVarietyBinding.inflate(layoutInflater)
         binding.rvVariety.adapter = UserVarietyAdapter(data)
         Log.d("TAG", data.toString())
         binding.rvVariety.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
@@ -47,6 +49,12 @@ class UserVarietyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

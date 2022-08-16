@@ -104,6 +104,8 @@ dependencies {
     //memoryleaksdetector
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
-
+// kotlinx-coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
 
 }

@@ -42,27 +42,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-        binding.cv1.setOnClickListener { // Cr
-            val db = Firebase.firestore
-// eate a new user with a first and last name
-            val user = hashMapOf(
-                "first" to "Ada",
-                "last" to "Lovelace",
-                "born" to 1815
-            )
-
-// Add a new document with a generated ID
-            db.collection("users")
-                .add(user)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                }
-        }
-
         binding.cv1.setOnClickListener {
             val directions = HomeFragmentDirections.actionHomeFragmentToUserHistoryFragment()
 
@@ -94,7 +73,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.cv6.setOnClickListener {
-
+            goToTreatment()
         }
 
         binding.cv5.setOnClickListener {
@@ -108,6 +87,10 @@ class HomeFragment : Fragment() {
 
 
     }
+
+    private fun goToTreatment() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToTreatmentFragment()
+        mainNavController?.navigate(direction)      }
 
     private fun goToQuiz() {
         val direction = HomeFragmentDirections.actionHomeFragmentToQuizFragment2()

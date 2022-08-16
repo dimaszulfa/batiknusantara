@@ -2,9 +2,7 @@ package com.dimaszulfa.batiknusantara.user.puzzle
 
 
 class ShuffleUtil {
-    /**
-     * Companion object containing the methods for shuffling the puzzle tiles.
-     */
+
     companion object {
 
         fun getValidShuffledState(
