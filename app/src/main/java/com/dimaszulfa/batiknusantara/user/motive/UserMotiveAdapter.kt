@@ -37,10 +37,7 @@ class UserMotiveAdapter(private val context: Context, private val data: ArrayLis
             title.text = list.title
             Glide.with(context).load(list.image).into(image)
             holder.image.setOnClickListener {
-                Toast.makeText(it.context, "Pindah ke Detail", Toast.LENGTH_SHORT).show()
                 it.findNavController().navigate(R.id.action_userMotiveFragment_to_userMotiveDetail, bundle)
-//                val directions = UserMotiveFragmentDirections.actionUserMotiveFragmentToUserMotiveDetail()
-
             }
         }
     }

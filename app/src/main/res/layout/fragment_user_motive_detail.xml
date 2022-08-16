@@ -1,35 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".user.motive.UserMotiveDetail">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/txTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginBottom="10dp"
         android:text="Title"/>
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_marginBottom="10dp"
         />
+
     <TextView
-        android:id="@+id/txDesc"
+        android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"/>
-    <TextView
-        android:id="@+id/txProvince"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title"/>
+        android:textSize="@dimen/dimen_16sp"
+        android:textColor="@color/black"
+        android:text="Kategori : "
+        android:layout_marginBottom="5dp"
+        />
+
     <TextView
         android:id="@+id/txCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Title"/>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/province"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_16sp"
+        android:textColor="@color/black"
+        android:text="Provinsi : "
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/txProvince"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Title"/>
+
+    <TextView
+        android:id="@+id/filosofi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_16sp"
+        android:textColor="@color/black"
+        android:text="Asal mula : "
+        android:layout_marginBottom="5dp"
+        />
+
+    <com.codesgood.views.JustifiedTextView
+        android:id="@+id/txDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"/>
+
+    </LinearLayout>
+
+
+</ScrollView>

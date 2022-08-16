@@ -1,8 +1,6 @@
 package com.dimaszulfa.batiknusantara.user.puzzle
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,38 +9,30 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewTreeObserver
 import android.widget.*
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
-import com.dimaszulfa.batiknusantara.user.motive.UserMotiveAdapter
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
-import java.lang.Runnable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import java.util.*
 import java.util.Collections.swap
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
 
 
 class NPuzzleActivity : AppCompatActivity() {
@@ -55,10 +45,6 @@ class NPuzzleActivity : AppCompatActivity() {
         private const val DEFAULT_FEWEST_MOVES = Long.MAX_VALUE
         private const val DEFAULT_FASTEST_TIME = Long.MAX_VALUE
     }
-
-    private val _datagambar = MutableLiveData<ArrayList<MotiveEntity>>()
-    val datagambar: LiveData<ArrayList<MotiveEntity>>
-        get()= _datagambar
 
     private lateinit var database: DatabaseReference
     private lateinit var clRoot: ConstraintLayout
@@ -85,109 +71,52 @@ class NPuzzleActivity : AppCompatActivity() {
     private lateinit var imageChunks: ArrayList<Bitmap>
     private lateinit var blankImageChunks: ArrayList<Bitmap>
     private lateinit var tileImages: ArrayList<ImageButton>
-//    private lateinit var puzzleImageChoices: ArrayList<MotiveEntity>
-
     var puzzleImageChoices = arrayListOf<MotiveEntity>()
-
-
     private var puzzleImageIndex: Int = 0
     private var indexOfCustom: Int = 0
-    private var isGalleryImageChosen: Boolean = false
     private lateinit var shuffleRunnable: ShuffleRunnable
     private lateinit var shuffleScheduler: ScheduledExecutorService
     private lateinit var shuffleHandler: Handler
-
     private lateinit var timerHandler: Handler
-
-
     private var isTimerRunning: Boolean = false
-
-
     private var numMoves: Long = 0
-
-
     private var fewestMoves: Long = DEFAULT_FEWEST_MOVES
-
-
     private var timeTaken: Long = 0
-
-
     private var fastestTime: Long = DEFAULT_FASTEST_TIME
-
-
     private var puzzleSolution: Stack<StatePair>? = null
-
-
     private var numMovesSolution: Int = 0
-
-
     private lateinit var solveHandler: Handler
-
-
     private lateinit var solveDisplayHandler: Handler
-
-
     private var isSolutionDisplay: Boolean = false
-
-
     private var isSolutionPlay: Boolean = false
-
-
     private var isSolutionSkip: Boolean = false
-
-    private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_n_puzzle)
         database = Firebase.database.reference
-
         getMotiveData()
-        getMotiveChild()
         initComponents()
         initSharedPreferences()
         initHandlers()
         initStateAndTileImages()
-        initPuzzle()
-        initGalleryLauncher()
-
-
     }
 
 
 
-    private fun getMotiveChild() {
-        database = FirebaseDatabase.getInstance().getReference("motive")
-        database.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(motiveChild in snapshot.children){
-                        Log.d("TAG", motiveChild.child("title").getValue().toString())
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-
-    }
 
     private fun getMotiveData() {
         database = FirebaseDatabase.getInstance().getReference("motive")
-        database.addValueEventListener(object: ValueEventListener {
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(motiveSnapshot in snapshot.children){
+                if (snapshot.exists()) {
+                    for (motiveSnapshot in snapshot.children) {
                         val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
                         puzzleImageChoices.add(motive!!)
-                        _datagambar.postValue(puzzleImageChoices)
-                        Log.d("TAGGGG", puzzleImageChoices.toString())
-                        Toast.makeText(this@NPuzzleActivity,"SUKSESS", Toast.LENGTH_LONG).show()
                     }
+                    initPuzzle()
+
                 }
             }
 
@@ -218,23 +147,10 @@ class NPuzzleActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
-        if (isGalleryImageChosen) {
-            isGalleryImageChosen = false
-        } else {
             spnPuzzle.setSelection(puzzleImageIndex)
-        }
-    }
-
-    init{
-        getMotiveData()
-        getMotiveChild()
     }
 
     private fun initComponents() {
-        /* Initialize the root layout and the grid view. */
-        Log.d("INITES", puzzleImageChoices.toString())
-
         clRoot = findViewById(R.id.cl_root)
         gvgPuzzle = findViewById(R.id.gvg_puzzle)
 
@@ -329,16 +245,6 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    private fun initGalleryLauncher() {
-        galleryLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    loadPuzzle(result.data?.data)
-                }
-            }
-    }
-
-
     private fun setBtnShuffleAction() {
         btnShuffle.setOnClickListener {
             if (isSolutionDisplay) {
@@ -350,8 +256,6 @@ class NPuzzleActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
 
     private fun setSpnPuzzleAction() {
@@ -450,24 +354,23 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    suspend fun dataBitmap(): Bitmap{
+    suspend fun dataBitmap(): Bitmap {
 
-
+//        spnPuzzle.setSelection(puzzleImageIndex)
         var dataBitmap = Glide.with(this@NPuzzleActivity)
             .asBitmap()
-            .load("https://firebasestorage.googleapis.com/v0/b/batiknusantara-edc46.appspot.com/o/Batik%20Noken%20Papua.jpg?alt=media&token=f0b6e106-bf7f-4884-b5b4-4214295e2edd")
+            .load(puzzleImageChoices[12].image)
             .submit()
             .get()
         return dataBitmap
     }
 
     private fun initPuzzleImage() {
-        puzzleImageIndex = sp.getInt(Key.KEY_PUZZLE_IMAGE.name, 0)
-        spnPuzzle.setSelection(puzzleImageIndex)
+
 
         //test data arrayList
         Log.d("INITES", puzzleImageChoices.toString())
-        Toast.makeText(this,puzzleImageChoices.size.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, puzzleImageChoices.size.toString(), Toast.LENGTH_SHORT).show()
 
         var dataBitmap = runBlocking(Dispatchers.IO) { dataBitmap() }
         puzzleImage = ImageUtil.resizeToSquareBitmap(
@@ -831,12 +734,6 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    private fun skipSolution() {
-        isSolutionSkip = true
-        resumeSolution()
-    }
-
-
     private fun endGame(solveStatus: SolveStatus) {
         isGameInSession = false
         isTimerRunning = false
@@ -955,18 +852,6 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    private fun loadPuzzle(imagePath: Uri?) {
-        isGalleryImageChosen = true
-        resetState()
-
-
-        tvSuccess.visibility = View.GONE
-
-        updatePuzzleImage(imagePath)
-        initChunks()
-        displayPuzzle()
-    }
-
 
     private fun updatePuzzleImage(imagePath: Uri?) {
         puzzleImage = ImageUtil.resizeToSquareBitmap(
@@ -979,14 +864,4 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionsResult(grantResults)
-    }
-
-    private fun permissionsResult(grantResults: IntArray) {
-    }
 }

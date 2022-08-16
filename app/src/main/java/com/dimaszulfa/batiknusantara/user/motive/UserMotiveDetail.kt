@@ -35,7 +35,6 @@ class UserMotiveDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.txTitle.text = args.title
-        Log.d("TAG", args.image)
         Glide.with(requireContext()).load(args.image).into(binding.ivImage)
         binding.txDesc.text = args.description
         binding.txCategory.text = args.category

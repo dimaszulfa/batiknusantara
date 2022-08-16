@@ -142,11 +142,13 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mSelectedOptionPosition == "") {
+                    Toast.makeText(requireContext(), "DATA BLM DIPILIH", Toast.LENGTH_SHORT).show()
                     mCurrentPosition++
 
                     when {
                         mCurrentPosition <= dataQuiz!!.size -> {
                             setQuestion()
+
                         }
                         else -> {
                             var hasil: Float = correctAnswer.toFloat()/20*100

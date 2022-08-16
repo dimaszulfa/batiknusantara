@@ -11,7 +11,7 @@
         <entry key="..\:/Skripsi/app/src/main/res/drawable/wrong_option_border_bg.xml" value="0.124" />
         <entry key="..\:/Skripsi/app/src/main/res/font/caesar_dressing.xml" value="0.2015625" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Skripsi/app/src/main/res/layout/activity_n_puzzle.xml" value="0.1" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/activity_n_puzzle.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/activity_register.xml" value="0.1381340579710145" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/board_options_activity.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/custom_button.xml" value="0.13" />
@@ -21,7 +21,7 @@
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_add_quiz_dialog_list_dialog_item.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_dashboard_admin.xml" value="0.22" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_history.xml" value="0.18541666666666667" />
-        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_introduction.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_list_quiz.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_location.xml" value="0.1" />
@@ -33,25 +33,19 @@
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_register2.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_result_quiz.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_splash_screen.xml" value="0.33" />
-        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_history.xml" value="0.25" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_history.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive.xml" value="0.1" />
-        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive_detail.xml" value="0.1" />
+        <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_motive_detail.xml" value="0.25" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/fragment_user_variety.xml" value="0.16894630192502533" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/game_toolbar.xml" value="0.1" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/item_introduction.xml" value="0.33" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/item_user_motive.xml" value="0.15" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/item_user_variety.xml" value="0.22" />
         <entry key="..\:/Skripsi/app/src/main/res/layout/spn_puzzle_dropdown.xml" value="0.1" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/fragment_about.xml" value="0.22826086956521738" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/fragment_introduction.xml" value="0.1" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/fragment_splash_screen.xml" value="0.22826086956521738" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/fragment_treatment.xml" value="0.176" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/item_introduction.xml" value="0.22826086956521738" />
-        <entry key="..\:/skripsi/batiknusantara/app/src/main/res/layout/item_treatment.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
