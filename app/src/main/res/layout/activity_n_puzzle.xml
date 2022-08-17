@@ -244,21 +244,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_time"
             app:layout_constraintVertical_bias="0.06" />
 
-        <TextView
-            android:id="@+id/tv_trivia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/cairo_semibold"
-            android:text="@string/trivia"
-            android:textColor="@color/stats_text"
-            android:textSize="12sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/gl_right_button"
-            app:layout_constraintStart_toStartOf="@+id/gl_left_button"
-            app:layout_constraintTop_toBottomOf="@+id/btn_shuffle"
-            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_puzzle"
@@ -274,7 +259,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spn_puzzle"
             app:layout_constraintVertical_bias="0.0">
 
-            <com.dimaszulfa.batiknusantara.user.puzzle.GridViewGesture
+            <com.dimaszulfa.batiknusantara.util.GridViewGesture
                 android:id="@+id/gvg_puzzle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -284,7 +269,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            </com.dimaszulfa.batiknusantara.user.puzzle.GridViewGesture>
+            </com.dimaszulfa.batiknusantara.util.GridViewGesture>
 
             <TextView
                 android:id="@+id/tv_success"

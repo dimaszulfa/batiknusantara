@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.puzzle
+package com.dimaszulfa.batiknusantara.util
 
 
 class MoveUtil {

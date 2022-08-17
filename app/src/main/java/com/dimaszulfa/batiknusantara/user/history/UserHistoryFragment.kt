@@ -28,6 +28,7 @@ class UserHistoryFragment : Fragment() {
         binding = FragmentUserHistoryBinding.inflate(layoutInflater)
         db = Firebase.database.reference
         binding.pgProgressBar.visibility = View.VISIBLE
+        binding.cvHistory.visibility = View.INVISIBLE
         return binding.root
     }
 
@@ -38,6 +39,7 @@ class UserHistoryFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     binding.pgProgressBar.visibility = View.INVISIBLE
+                    binding.cvHistory.visibility = View.VISIBLE
                     for(history in snapshot.children){
                         val data = history.getValue<HistoryEntity>()
                         binding.txTitle.text = data!!.title

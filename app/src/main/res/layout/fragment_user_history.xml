@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@drawable/poster"
     android:layout_height="match_parent"
     tools:context=".user.history.UserHistoryFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
-
+    <ProgressBar
+        android:id="@+id/pgProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvHistory"
         app:cardCornerRadius="16dp"
         android:layout_margin="25dp"
         app:cardBackgroundColor="@color/colorSecondary"
@@ -59,10 +69,6 @@
     </androidx.cardview.widget.CardView>
 
 
-    <ProgressBar
-        android:id="@+id/pgProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
 
-</LinearLayout>
+</RelativeLayout>
+</FrameLayout>

@@ -36,24 +36,14 @@
     <string name="fewest_moves">Terlambat:&#xA0;</string>
     <string name="timer">Waktu:&#xA0;</string>
     <string name="fastest_time">Tercepat:&#xA0;</string>
-
-    <!-- Trivia -->
-    <string name="trivia">An 8-puzzle can be solved in at most 31 moves</string>
-    <string name="trivia_a_star">This app uses the A* algorithm to solve the puzzle</string>
-
     <!-- Puzzle images -->
     <string name="default_image">Lobster Shoob</string>
     <string-array name="puzzle_images">
         <item>Batik Noken Papua</item>
-        <item>ROSE-COLORED LIFE</item>
-        <item>KIKYO &amp; INUYASHA</item>
-        <item>YUKO, MARU &amp; MORO</item>
-        <item>JIGOKU SHOUJO</item>
-        <item>CUSTOM</item>
+        <item>Batik Bahana Tifa</item>
+        <item>Batik Pinang</item>
+        <item>Batik Patung Mbis</item>
+        <item>Batik Matoa</item>
     </string-array>
 
-    <!-- Image upload -->
-    <string name="no_permission">Insufficient permission to access Gallery</string>
-    <string name="tv_splash_copyright">Copyright © 2022 Mark Edward M. Gonzales\nhttps://github.com/memgonzales/sliding-puzzle</string>
-    <string name="iv_splash_logo">Placeholder for logo</string>
 </resources>

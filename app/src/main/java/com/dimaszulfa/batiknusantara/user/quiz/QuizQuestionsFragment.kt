@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.data.MotiveEntity
 import com.dimaszulfa.batiknusantara.data.QuizEntity
@@ -50,15 +52,15 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         dataQuiz = arrayListOf<QuizEntity>()
         db = Firebase.database.reference
         callDatabase()
+        binding.pgProgressBars.visibility = View.VISIBLE
+        binding.cvScrollView.visibility = View.INVISIBLE
 //        setQuestion()
         return binding.root
     }
 
 
-    private fun goToResult() {
-        val directions = QuizQuestionsFragmentDirections.actionQuizQuestionsFragmentToResultQuizFragment()
-        mainNavController?.navigate(directions)
-    }
+    private fun goToResult(bundle: Bundle) {
+        findNavController().navigate(R.id.action_quizQuestionsFragment_to_resultQuizFragment, bundle) }
 
     private fun setQuestion() {
         txtViewSettings(true)
@@ -68,6 +70,8 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
 
         if (mCurrentPosition == dataQuiz!!.size) {
             binding.btnSubmit.text = "Finish"
+
+
         } else {
             binding.btnSubmit.text = "Submit"
         }
@@ -95,6 +99,8 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    binding.pgProgressBars.visibility = View.INVISIBLE
+                    binding.cvScrollView.visibility = View.VISIBLE
                     for (data in snapshot.children) {
                         val motive = data.getValue(QuizEntity::class.java)
                         dataQuiz.add(motive!!)
@@ -142,7 +148,6 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
             }
             R.id.btn_submit -> {
                 if (mSelectedOptionPosition == "") {
-                    Toast.makeText(requireContext(), "DATA BLM DIPILIH", Toast.LENGTH_SHORT).show()
                     mCurrentPosition++
 
                     when {
@@ -152,13 +157,15 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
                         }
                         else -> {
                             var hasil: Float = correctAnswer.toFloat()/20*100
-                            Toast.makeText(
-                                requireContext(),
-                                hasil.toString() + "%", Toast.LENGTH_SHORT
-                            ).show()
+                            val number2digits:Double = String.format("%.2f", hasil).toDouble()
+                            val bundle = Bundle().apply {
+                                putString("score", correctAnswer.toString())
+                                putString("accuracy", number2digits.toString())
+                            }
+
 //                            val intent = Intent(this,MainActivity::class.java)
 //                            startActivity(intent)
-                            goToResult()
+                            goToResult(bundle)
                         }
                     }
                 } else {
@@ -169,7 +176,6 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
 //                    answerView(question.correctAnswer)
                     txtViewSettings(false)
                     if (question.correctAnswer !=  mSelectedOptionPosition) {
-                        Toast.makeText(requireContext(), question!!.correctAnswer.toString(), Toast.LENGTH_SHORT).show()
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                         wrongAnswer
                     }else{

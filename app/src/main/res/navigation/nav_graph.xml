@@ -204,7 +204,14 @@
         android:id="@+id/resultQuizFragment"
         android:name="com.dimaszulfa.batiknusantara.user.quiz.ResultQuizFragment"
         android:label="fragment_result_quiz"
-        tools:layout="@layout/fragment_result_quiz" />
+        tools:layout="@layout/fragment_result_quiz" >
+        <argument
+            android:name="accuracy"
+            app:argType="string"/>
+        <argument
+            android:name="score"
+            app:argType="string"/>
+    </fragment>
     <activity
         android:id="@+id/NPuzzleActivity"
         android:name="com.dimaszulfa.batiknusantara.user.puzzle.NPuzzleActivity"

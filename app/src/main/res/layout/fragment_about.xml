@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,38 @@
     tools:context=".user.about.AboutFragment"
     android:background="@color/colorSecondary"
     android:padding="@dimen/dimen_16sp">
+    <ProgressBar
+        android:id="@+id/pgProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+<LinearLayout
+    android:id="@+id/cvAbout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textSize="22sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Tentang Aplikasi"/>
 
-    <TextView
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/unla"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"/>
+    <com.codesgood.views.JustifiedTextView
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:id="@+id/textDesc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Welcome to Website Name!
@@ -114,3 +139,4 @@ As long as the website and the information and services on the website are provi
 
 
 </LinearLayout>
+</RelativeLayout>

@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
     android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
     tools:context=".user.quiz.ResultQuizFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="Hasil Quiz" />
 
-</FrameLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/trophy" />
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:id="@+id/tvCongrats"
+        app:layout_constraintTop_toBottomOf="@id/lottieAnimationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Selamat!"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:id="@+id/tvTextCongrats"
+        app:layout_constraintTop_toBottomOf="@id/tvCongrats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Selamat! Anda telah menyelesaikan Quiz Batik dengan skor :"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:id="@+id/tvScore"
+        app:layout_constraintTop_toBottomOf="@id/tvTextCongrats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="5/20!"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:id="@+id/tvTextAccuracy"
+        app:layout_constraintTop_toBottomOf="@id/tvScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Dengan akurasi : "
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:id="@+id/tvAccuracy"
+        app:layout_constraintTop_toBottomOf="@id/tvTextAccuracy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="35%"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

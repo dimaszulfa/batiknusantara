@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.util.Log
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewTreeObserver
@@ -20,14 +19,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.R
-import com.dimaszulfa.batiknusantara.data.MotiveEntity
+import com.dimaszulfa.batiknusantara.util.*
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import java.util.*
 import java.util.Collections.swap
 import java.util.concurrent.Executors
@@ -45,8 +39,6 @@ class NPuzzleActivity : AppCompatActivity() {
         private const val DEFAULT_FEWEST_MOVES = Long.MAX_VALUE
         private const val DEFAULT_FASTEST_TIME = Long.MAX_VALUE
     }
-
-    private lateinit var database: DatabaseReference
     private lateinit var clRoot: ConstraintLayout
     private lateinit var gvgPuzzle: GridViewGesture
     private lateinit var btnShuffle: Button
@@ -58,7 +50,6 @@ class NPuzzleActivity : AppCompatActivity() {
     private lateinit var spnPuzzle: Spinner
     private lateinit var tvTitle: TextView
     private lateinit var tvSuccess: TextView
-    private lateinit var tvTrivia: TextView
     private lateinit var sp: SharedPreferences
     private var tileDimen: Int = 0
     private var puzzleDimen: Int = 0
@@ -71,7 +62,7 @@ class NPuzzleActivity : AppCompatActivity() {
     private lateinit var imageChunks: ArrayList<Bitmap>
     private lateinit var blankImageChunks: ArrayList<Bitmap>
     private lateinit var tileImages: ArrayList<ImageButton>
-    var puzzleImageChoices = arrayListOf<MotiveEntity>()
+private lateinit var puzzleImageChoices: Array<PuzzleImage>
     private var puzzleImageIndex: Int = 0
     private var indexOfCustom: Int = 0
     private lateinit var shuffleRunnable: ShuffleRunnable
@@ -95,37 +86,14 @@ class NPuzzleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_n_puzzle)
-        database = Firebase.database.reference
-        getMotiveData()
         initComponents()
         initSharedPreferences()
         initHandlers()
         initStateAndTileImages()
+        initPuzzle()
+
     }
 
-
-
-
-    private fun getMotiveData() {
-        database = FirebaseDatabase.getInstance().getReference("motive")
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (motiveSnapshot in snapshot.children) {
-                        val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
-                        puzzleImageChoices.add(motive!!)
-                    }
-                    initPuzzle()
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@NPuzzleActivity, error.toString(), Toast.LENGTH_SHORT).show()
-            }
-
-        })
-    }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -157,7 +125,6 @@ class NPuzzleActivity : AppCompatActivity() {
         btnShuffle = findViewById(R.id.btn_shuffle)
         setBtnShuffleAction()
         pbShuffle = findViewById(R.id.pb_shuffle)
-
         tvMoveNumber = findViewById(R.id.tv_move_number)
         tvFewestMoves = findViewById(R.id.tv_fewest_moves)
         tvTimeTaken = findViewById(R.id.tv_time_taken)
@@ -169,16 +136,14 @@ class NPuzzleActivity : AppCompatActivity() {
             tvSuccess.visibility = View.GONE
         }
 
-        tvTrivia = findViewById(R.id.tv_trivia)
-
         spnPuzzle = findViewById(R.id.spn_puzzle)
-        spnPuzzle.adapter = SpinnerAdapter(
+        spnPuzzle.adapter = com.dimaszulfa.batiknusantara.util.SpinnerAdapter(
             this,
             R.layout.spn_puzzle_item,
             resources.getStringArray(R.array.puzzle_images)
         )
 
-//        puzzleImageChoices = PuzzleImage.values()
+        puzzleImageChoices = PuzzleImage.values()
         indexOfCustom = puzzleImageChoices.lastIndex
     }
 
@@ -354,7 +319,7 @@ class NPuzzleActivity : AppCompatActivity() {
     }
 
 
-    suspend fun dataBitmap(): Bitmap {
+/*    suspend fun dataBitmap(): Bitmap {
 
 //        spnPuzzle.setSelection(puzzleImageIndex)
         var dataBitmap = Glide.with(this@NPuzzleActivity)
@@ -363,18 +328,18 @@ class NPuzzleActivity : AppCompatActivity() {
             .submit()
             .get()
         return dataBitmap
-    }
+    }*/
 
     private fun initPuzzleImage() {
 
+        puzzleImageIndex = sp.getInt(Key.KEY_PUZZLE_IMAGE.name, 0)
+        spnPuzzle.setSelection(puzzleImageIndex)
 
-        //test data arrayList
-        Log.d("INITES", puzzleImageChoices.toString())
-        Toast.makeText(this, puzzleImageChoices.size.toString(), Toast.LENGTH_SHORT).show()
-
-        var dataBitmap = runBlocking(Dispatchers.IO) { dataBitmap() }
         puzzleImage = ImageUtil.resizeToSquareBitmap(
-            dataBitmap,
+            ImageUtil.drawableToBitmap(
+                this@NPuzzleActivity,
+                puzzleImageChoices[puzzleImageIndex].drawableId
+            ),
             puzzleDimen,
             puzzleDimen
         )
@@ -382,8 +347,6 @@ class NPuzzleActivity : AppCompatActivity() {
 
 
     private fun initChunks() {
-        var dataBitmap = runBlocking(Dispatchers.IO) { dataBitmap() }
-
         imageChunks =
             ImageUtil.splitBitmap(
                 puzzleImage,
@@ -404,7 +367,6 @@ class NPuzzleActivity : AppCompatActivity() {
     private fun displayPuzzle() {
 
         for ((position, tile) in puzzleState.withIndex()) {
-            /* Properly reflect the blank tile depending on the puzzle state. */
             if (position == blankTilePos) {
                 tileImages[blankTilePos].setImageBitmap(blankImageChunks[blankTilePos])
             } else {
@@ -444,14 +406,16 @@ class NPuzzleActivity : AppCompatActivity() {
 
     private fun updatePuzzleImage(position: Int) {
         puzzleImageIndex = position
-        var dataBitmap = runBlocking(Dispatchers.IO) { dataBitmap() }
 
         puzzleImage = ImageUtil.resizeToSquareBitmap(
-            dataBitmap,
+            ImageUtil.drawableToBitmap(
+                this@NPuzzleActivity, puzzleImageChoices[puzzleImageIndex].drawableId
+            ),
             puzzleDimen,
             puzzleDimen
         )
 
+        /* Set this image as the most recently selected puzzle image. */
         with(sp.edit()) {
             putInt(Key.KEY_PUZZLE_IMAGE.name, puzzleImageIndex)
             commit()
@@ -535,11 +499,6 @@ class NPuzzleActivity : AppCompatActivity() {
         pbShuffle.visibility = View.VISIBLE
         pbShuffle.progress = 0
         btnShuffle.text = getString(R.string.randomizing)
-
-        tvTrivia.visibility = View.VISIBLE
-        tvTrivia.text = getString(R.string.trivia)
-
-
         tvSuccess.visibility = View.GONE
 
         disableClickables()
@@ -555,7 +514,7 @@ class NPuzzleActivity : AppCompatActivity() {
 
     private fun getValidShuffledState() {
         val shuffledState: StatePair =
-            ShuffleUtil.getValidShuffledState(puzzleState, goalPuzzleState, BLANK_TILE_MARKER)
+            ShuffleAlgorithm.getValidShuffledState(puzzleState, goalPuzzleState, BLANK_TILE_MARKER)
 
         puzzleState = shuffledState.puzzleState
         blankTilePos = shuffledState.blankTilePos
@@ -598,7 +557,6 @@ class NPuzzleActivity : AppCompatActivity() {
         btnShuffle.text = getString(R.string.randomized)
 
         pbShuffle.visibility = View.GONE
-        tvTrivia.text = getString(R.string.trivia_a_star)
         enableClickables()
     }
 
@@ -763,18 +721,12 @@ class NPuzzleActivity : AppCompatActivity() {
 
         btnShuffle.text = getString(R.string.new_game)
 
-
-        tvTrivia.visibility = View.GONE
-
         spnPuzzle.isEnabled = true
     }
 
 
     private fun prepareForSolution() {
         btnShuffle.text = getString(R.string.pause)
-
-
-        tvTrivia.visibility = View.GONE
     }
 
 

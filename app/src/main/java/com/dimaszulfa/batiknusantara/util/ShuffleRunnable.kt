@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.puzzle
+package com.dimaszulfa.batiknusantara.util
 
 import android.os.Bundle
 import android.os.Handler

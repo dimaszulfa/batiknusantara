@@ -5,29 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.dimaszulfa.batiknusantara.R
+import com.dimaszulfa.batiknusantara.databinding.FragmentQuizQuestionsBinding
+import com.dimaszulfa.batiknusantara.databinding.FragmentResultQuizBinding
+import com.dimaszulfa.batiknusantara.databinding.FragmentUserMotiveDetailBinding
+import com.dimaszulfa.batiknusantara.user.motive.UserMotiveDetailArgs
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ResultQuizFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ResultQuizFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+
+    private var _binding: FragmentResultQuizBinding?= null
+    val binding get() = _binding!!
+    private val args by navArgs<ResultQuizFragmentArgs>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -35,26 +27,19 @@ class ResultQuizFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result_quiz, container, false)
+        _binding = FragmentResultQuizBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ResultQuizFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ResultQuizFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tvAccuracy.text = StringBuilder(args.accuracy + "%")
+        binding.tvScore.text = StringBuilder(args.score + "/20")
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
 }
