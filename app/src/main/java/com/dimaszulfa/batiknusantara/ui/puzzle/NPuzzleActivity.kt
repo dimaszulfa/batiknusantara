@@ -1,10 +1,8 @@
-package com.dimaszulfa.batiknusantara.user.puzzle
+package com.dimaszulfa.batiknusantara.ui.puzzle
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,12 +14,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.dimaszulfa.batiknusantara.R
 import com.dimaszulfa.batiknusantara.util.*
-import com.google.firebase.database.*
 import java.util.*
 import java.util.Collections.swap
 import java.util.concurrent.Executors
@@ -31,25 +25,7 @@ import java.util.concurrent.TimeUnit
 
 class NPuzzleActivity : AppCompatActivity() {
 
-    companion object {
-        private const val NUM_COLUMNS = 3
-        private const val NUM_TILES = NUM_COLUMNS * NUM_COLUMNS
-        private const val BORDER_OFFSET = 6
-        private const val BLANK_TILE_MARKER = NUM_TILES - 1
-        private const val DEFAULT_FEWEST_MOVES = Long.MAX_VALUE
-        private const val DEFAULT_FASTEST_TIME = Long.MAX_VALUE
-    }
-    private lateinit var clRoot: ConstraintLayout
-    private lateinit var gvgPuzzle: GridViewGesture
-    private lateinit var btnShuffle: Button
-    private lateinit var pbShuffle: ProgressBar
-    private lateinit var tvMoveNumber: TextView
-    private lateinit var tvFewestMoves: TextView
-    private lateinit var tvTimeTaken: TextView
-    private lateinit var tvFastestTime: TextView
-    private lateinit var spnPuzzle: Spinner
-    private lateinit var tvTitle: TextView
-    private lateinit var tvSuccess: TextView
+
     private lateinit var sp: SharedPreferences
     private var tileDimen: Int = 0
     private var puzzleDimen: Int = 0
@@ -62,7 +38,7 @@ class NPuzzleActivity : AppCompatActivity() {
     private lateinit var imageChunks: ArrayList<Bitmap>
     private lateinit var blankImageChunks: ArrayList<Bitmap>
     private lateinit var tileImages: ArrayList<ImageButton>
-private lateinit var puzzleImageChoices: Array<PuzzleImage>
+    private lateinit var puzzleImageChoices: Array<PuzzleImage>
     private var puzzleImageIndex: Int = 0
     private var indexOfCustom: Int = 0
     private lateinit var shuffleRunnable: ShuffleRunnable
@@ -95,27 +71,9 @@ private lateinit var puzzleImageChoices: Array<PuzzleImage>
     }
 
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            hideSystemUI()
-        }
-    }
-
-
-    private fun hideSystemUI() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowInsetsControllerCompat(window, clRoot).let {
-            it.hide(WindowInsetsCompat.Type.systemBars())
-            it.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-    }
-
-
     override fun onResume() {
         super.onResume()
-            spnPuzzle.setSelection(puzzleImageIndex)
+        spnPuzzle.setSelection(puzzleImageIndex)
     }
 
     private fun initComponents() {
@@ -234,11 +192,8 @@ private lateinit var puzzleImageChoices: Array<PuzzleImage>
             ) {
                 if (position != indexOfCustom) {
                     loadPuzzle(position)
-                } else {
-                    uploadPuzzleImage()
                 }
             }
-
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
@@ -318,17 +273,6 @@ private lateinit var puzzleImageChoices: Array<PuzzleImage>
         })
     }
 
-
-/*    suspend fun dataBitmap(): Bitmap {
-
-//        spnPuzzle.setSelection(puzzleImageIndex)
-        var dataBitmap = Glide.with(this@NPuzzleActivity)
-            .asBitmap()
-            .load(puzzleImageChoices[12].image)
-            .submit()
-            .get()
-        return dataBitmap
-    }*/
 
     private fun initPuzzleImage() {
 
@@ -415,7 +359,6 @@ private lateinit var puzzleImageChoices: Array<PuzzleImage>
             puzzleDimen
         )
 
-        /* Set this image as the most recently selected puzzle image. */
         with(sp.edit()) {
             putInt(Key.KEY_PUZZLE_IMAGE.name, puzzleImageIndex)
             commit()
@@ -800,19 +743,25 @@ private lateinit var puzzleImageChoices: Array<PuzzleImage>
     }
 
 
-    private fun uploadPuzzleImage() {
-    }
+    private lateinit var clRoot: ConstraintLayout
+    private lateinit var gvgPuzzle: GridViewGesture
+    private lateinit var btnShuffle: Button
+    private lateinit var pbShuffle: ProgressBar
+    private lateinit var tvMoveNumber: TextView
+    private lateinit var tvFewestMoves: TextView
+    private lateinit var tvTimeTaken: TextView
+    private lateinit var tvFastestTime: TextView
+    private lateinit var spnPuzzle: Spinner
+    private lateinit var tvTitle: TextView
+    private lateinit var tvSuccess: TextView
 
-
-
-    private fun updatePuzzleImage(imagePath: Uri?) {
-        puzzleImage = ImageUtil.resizeToSquareBitmap(
-            BitmapFactory.decodeStream(
-                contentResolver.openInputStream(imagePath!!)
-            ),
-            puzzleDimen,
-            puzzleDimen
-        )
+    companion object {
+        private const val NUM_COLUMNS = 3
+        private const val NUM_TILES = NUM_COLUMNS * NUM_COLUMNS
+        private const val BORDER_OFFSET = 6
+        private const val BLANK_TILE_MARKER = NUM_TILES - 1
+        private const val DEFAULT_FEWEST_MOVES = Long.MAX_VALUE
+        private const val DEFAULT_FASTEST_TIME = Long.MAX_VALUE
     }
 
 

@@ -73,12 +73,12 @@
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.quiz.QuizQuestionsFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizQuestionsFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.about.AboutFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
@@ -121,7 +121,7 @@
         tools:layout="@layout/fragment_motive" />
     <fragment
         android:id="@+id/userMotiveFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.motive.UserMotiveFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.motive.MotiveFragment"
         android:label="fragment_user_motive"
         tools:layout="@layout/fragment_user_motive" >
         <action
@@ -130,7 +130,7 @@
     </fragment>
     <fragment
         android:id="@+id/userHistoryFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.history.UserHistoryFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.history.HistoryFragment"
         android:label="fragment_user_history"
         tools:layout="@layout/fragment_user_history" />
     <fragment
@@ -158,7 +158,7 @@
     </dialog>
     <fragment
         android:id="@+id/userMotiveDetail"
-        android:name="com.dimaszulfa.batiknusantara.user.motive.UserMotiveDetail"
+        android:name="com.dimaszulfa.batiknusantara.ui.motive.MotiveDetail"
         android:label="fragment_user_motive_detail"
         tools:layout="@layout/fragment_user_motive_detail"
         >
@@ -180,12 +180,12 @@
     </fragment>
     <fragment
         android:id="@+id/userVarietyFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.variety.UserVarietyFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.variety.UserVarietyFragment"
         android:label="fragment_user_variety"
         tools:layout="@layout/fragment_user_variety" />
     <fragment
         android:id="@+id/quizFragment2"
-        android:name="com.dimaszulfa.batiknusantara.user.quiz.QuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizFragment"
         android:label="QuizFragment" >
         <action
             android:id="@+id/action_quizFragment2_to_quizQuestionsFragment"
@@ -193,7 +193,7 @@
     </fragment>
     <fragment
         android:id="@+id/quizQuestionsFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.quiz.QuizQuestionsFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizQuestionsFragment"
         android:label="fragment_quiz_questions"
         tools:layout="@layout/fragment_quiz_questions" >
         <action
@@ -202,7 +202,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultQuizFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.quiz.ResultQuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.ResultQuizFragment"
         android:label="fragment_result_quiz"
         tools:layout="@layout/fragment_result_quiz" >
         <argument
@@ -214,11 +214,11 @@
     </fragment>
     <activity
         android:id="@+id/NPuzzleActivity"
-        android:name="com.dimaszulfa.batiknusantara.user.puzzle.NPuzzleActivity"
+        android:name="com.dimaszulfa.batiknusantara.ui.puzzle.NPuzzleActivity"
         android:label="NPuzzleActivity" />
     <fragment
         android:id="@+id/treatmentFragment"
-        android:name="com.dimaszulfa.batiknusantara.user.treatment.TreatmentFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.treatment.TreatmentFragment"
         android:label="fragment_treatment"
         tools:layout="@layout/fragment_treatment" />
 

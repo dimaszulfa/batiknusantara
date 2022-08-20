@@ -1,7 +1,6 @@
-package com.dimaszulfa.batiknusantara.user.treatment
+package com.dimaszulfa.batiknusantara.ui.treatment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,34 +39,12 @@ class TreatmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         treatmentArrayList = arrayListOf<TreatmentEntity>()
-        gettreatmentChild()
-        gettreatmentData()
-
-
-
-
+        getTreatmentData()
 
     }
 
-    private fun gettreatmentChild() {
-        database = FirebaseDatabase.getInstance().getReference("treatment")
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-//                    binding.pgProgressBar.visibility = View.GONE
-                    for (treatmentChild in snapshot.children) {
-                        Log.d("TAG", treatmentChild.child("step").getValue().toString())
-                    }
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-
-    private fun gettreatmentData() {
+    private fun getTreatmentData() {
         database = FirebaseDatabase.getInstance().getReference("treatment")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,7 +57,6 @@ class TreatmentFragment : Fragment() {
                     binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
                     val indicator = binding.indicator
                     indicator.setViewPager2(binding.viewPager)
-//                    binding.rvtreatment.adapter = UsertreatmentAdapter(requireContext(),treatmentArrayList)
                 }
             }
 

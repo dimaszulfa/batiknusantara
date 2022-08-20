@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.about
+package com.dimaszulfa.batiknusantara.ui.about
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.dimaszulfa.batiknusantara.data.AboutEntity
-import com.dimaszulfa.batiknusantara.data.HistoryEntity
 import com.dimaszulfa.batiknusantara.databinding.FragmentAboutBinding
-import com.dimaszulfa.batiknusantara.databinding.FragmentUserHistoryBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue

@@ -18,8 +18,6 @@ import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
-    val db = Firebase.firestore
-    val auth = Firebase.auth
     private var _binding: FragmentHomeBinding? = null
     val binding get() = _binding!!
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
@@ -43,29 +41,15 @@ class HomeFragment : Fragment() {
 
 
         binding.cv1.setOnClickListener {
-            val directions = HomeFragmentDirections.actionHomeFragmentToUserHistoryFragment()
+            goToHistory()
 
-            mainNavController?.navigate(directions)
         }
 
         binding.cv2.setOnClickListener {
-            val directions = HomeFragmentDirections.actionHomeFragmentToUserMotiveFragment()
-            mainNavController?.navigate(directions)
+            goToMotive()
         }
         binding.cv3.setOnClickListener {
             goToVariety()
-        }
-        binding.ivHeader.setOnClickListener {
-//            goToQuiz()
-            var directions: NavDirections
-            if (auth.currentUser == null) {
-                directions = HomeFragmentDirections.actionHomeFragmentToLoginFragment33()
-            } else {
-                directions = HomeFragmentDirections.actionHomeFragmentToDashboardAdminFragment()
-            }
-            mainNavController?.navigate(directions)
-
-
         }
 
         binding.cv4.setOnClickListener {
@@ -86,6 +70,16 @@ class HomeFragment : Fragment() {
         }
 
 
+    }
+
+    private fun goToMotive() {
+        val directions = HomeFragmentDirections.actionHomeFragmentToUserMotiveFragment()
+        mainNavController?.navigate(directions)
+    }
+
+    private fun goToHistory() {
+        val directions = HomeFragmentDirections.actionHomeFragmentToUserHistoryFragment()
+        mainNavController?.navigate(directions)
     }
 
     private fun goToTreatment() {

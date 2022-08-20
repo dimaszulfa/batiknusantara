@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.treatment
+package com.dimaszulfa.batiknusantara.ui.treatment
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.data.TreatmentEntity
-import com.dimaszulfa.batiknusantara.databinding.ItemIntroductionBinding
 import com.dimaszulfa.batiknusantara.databinding.ItemTreatmentBinding
 
 class SectionPagerAdapter(private val context: Context, private var listData: ArrayList<TreatmentEntity>): RecyclerView.Adapter<SectionPagerAdapter.Pager2ViewHolder>() {

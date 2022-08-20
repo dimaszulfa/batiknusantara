@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorSecondary"
     android:padding="20dp"
-    tools:context=".user.treatment.TreatmentFragment">
+    tools:context=".ui.treatment.TreatmentFragment">
 
     <ImageView
         app:layout_constraintTop_toTopOf="parent"

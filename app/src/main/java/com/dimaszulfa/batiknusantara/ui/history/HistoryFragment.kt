@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.history
+package com.dimaszulfa.batiknusantara.ui.history
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
-class UserHistoryFragment : Fragment() {
+class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentUserHistoryBinding
     private lateinit var db: DatabaseReference
@@ -34,6 +34,10 @@ class UserHistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            getHistoryData()
+    }
+
+    fun getHistoryData(){
         db = FirebaseDatabase.getInstance().getReference("history")
         db.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,6 +58,5 @@ class UserHistoryFragment : Fragment() {
             }
         })
     }
-
 
 }

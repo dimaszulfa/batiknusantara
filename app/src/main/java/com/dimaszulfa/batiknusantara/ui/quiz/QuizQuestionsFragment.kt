@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.quiz
+package com.dimaszulfa.batiknusantara.ui.quiz
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -9,14 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.R
-import com.dimaszulfa.batiknusantara.data.MotiveEntity
 import com.dimaszulfa.batiknusantara.data.QuizEntity
 import com.dimaszulfa.batiknusantara.databinding.FragmentQuizQuestionsBinding
 import com.google.firebase.database.*
@@ -33,11 +28,9 @@ private var mCurrentPosition: Int = 1
 private var mSelectedOptionPosition: String = ""
 private var correctAnswer: Int = 0
 private var wrongAnswer: Int = 0
-//motiveArrayList = arrayListOf<MotiveEntity>()
 
 
 class QuizQuestionsFragment : Fragment(), View.OnClickListener {
-    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,10 +44,9 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
         _binding = FragmentQuizQuestionsBinding.inflate(layoutInflater)
         dataQuiz = arrayListOf<QuizEntity>()
         db = Firebase.database.reference
-        callDatabase()
+        getQuizData()
         binding.pgProgressBars.visibility = View.VISIBLE
         binding.cvScrollView.visibility = View.INVISIBLE
-//        setQuestion()
         return binding.root
     }
 
@@ -94,7 +86,7 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
     }
 
 
-    private fun callDatabase() {
+    private fun getQuizData() {
         db = FirebaseDatabase.getInstance().getReference("quiz")
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -162,18 +154,11 @@ class QuizQuestionsFragment : Fragment(), View.OnClickListener {
                                 putString("score", correctAnswer.toString())
                                 putString("accuracy", number2digits.toString())
                             }
-
-//                            val intent = Intent(this,MainActivity::class.java)
-//                            startActivity(intent)
                             goToResult(bundle)
                         }
                     }
                 } else {
                     val question = dataQuiz?.get(mCurrentPosition - 1)
-//                    if (1 != mSelectedOptionPosition) {
-//                        answerView(mSelectedOptionPosition)
-//                    }
-//                    answerView(question.correctAnswer)
                     txtViewSettings(false)
                     if (question.correctAnswer !=  mSelectedOptionPosition) {
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)

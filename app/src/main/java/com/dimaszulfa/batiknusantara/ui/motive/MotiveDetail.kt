@@ -1,7 +1,6 @@
-package com.dimaszulfa.batiknusantara.user.motive
+package com.dimaszulfa.batiknusantara.ui.motive
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.dimaszulfa.batiknusantara.databinding.FragmentUserMotiveDetailBinding
 
 
-class UserMotiveDetail : Fragment() {
+class MotiveDetail : Fragment() {
 
 
     private lateinit var _binding: FragmentUserMotiveDetailBinding
@@ -34,6 +33,10 @@ class UserMotiveDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            initDataFromAdapter()
+    }
+
+   fun  initDataFromAdapter(){
         binding.txTitle.text = args.title
         Glide.with(requireContext()).load(args.image).into(binding.ivImage)
         binding.txDesc.text = args.description

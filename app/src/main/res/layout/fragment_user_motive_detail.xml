@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorSecondary"
-    tools:context=".user.motive.UserMotiveDetail">
+    tools:context=".ui.motive.MotiveDetail">
 
     <LinearLayout
         android:orientation="vertical"

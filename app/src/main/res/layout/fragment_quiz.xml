@@ -7,7 +7,7 @@
     android:background="#FEC853"
     android:gravity="center"
     android:padding="20dp"
-    tools:context=".user.quiz.QuizFragment">
+    tools:context=".ui.quiz.QuizFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView

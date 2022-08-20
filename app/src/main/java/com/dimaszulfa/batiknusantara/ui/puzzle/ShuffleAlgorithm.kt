@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.puzzle
+package com.dimaszulfa.batiknusantara.ui.puzzle
 
 import com.dimaszulfa.batiknusantara.util.PuzzleUtil
 import com.dimaszulfa.batiknusantara.util.StatePair

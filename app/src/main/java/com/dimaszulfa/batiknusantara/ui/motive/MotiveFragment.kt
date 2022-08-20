@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.motive
+package com.dimaszulfa.batiknusantara.ui.motive
 
 import android.os.Bundle
 import android.util.Log
@@ -17,13 +17,12 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
-class UserMotiveFragment : Fragment() {
+class MotiveFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
     private lateinit var motiveArrayList: ArrayList<MotiveEntity>
     private var _binding: FragmentUserMotiveBinding ?= null
     val binding get() = _binding!!
-    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +81,7 @@ class UserMotiveFragment : Fragment() {
                         val motive = motiveSnapshot.getValue(MotiveEntity::class.java)
                         motiveArrayList.add(motive!!)
                     }
-                    binding.rvMotive.adapter = UserMotiveAdapter(requireContext(),motiveArrayList)
+                    binding.rvMotive.adapter = MotiveAdapter(requireContext(),motiveArrayList)
                 }
             }
 

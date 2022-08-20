@@ -1,4 +1,4 @@
-package com.dimaszulfa.batiknusantara.user.variety
+package com.dimaszulfa.batiknusantara.ui.variety
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dimaszulfa.batiknusantara.data.VarietyEntity
 import com.dimaszulfa.batiknusantara.databinding.ItemUserVarietyBinding
 
-class UserVarietyAdapter(val variety: ArrayList<VarietyEntity>) :
-    RecyclerView.Adapter<UserVarietyAdapter.ViewHolder>() {
+class VarietyAdapter(val variety: ArrayList<VarietyEntity>) :
+    RecyclerView.Adapter<VarietyAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemUserVarietyBinding) : RecyclerView.ViewHolder(binding.root) {
 

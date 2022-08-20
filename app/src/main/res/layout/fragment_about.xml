@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".user.about.AboutFragment"
+    tools:context=".ui.about.AboutFragment"
     android:background="@color/colorSecondary"
     android:padding="@dimen/dimen_16sp">
     <ProgressBar
