@@ -12,7 +12,7 @@
         android:id="@+id/txTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="batik nusantara"
+        android:text="batik app"
         android:textColor="@color/colorPrimaryVariant"
         android:textSize="32sp"
         android:fontFamily="@font/montserrat_regular"

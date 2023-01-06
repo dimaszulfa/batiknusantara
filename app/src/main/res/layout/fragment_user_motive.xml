@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".motive.UserMotiveFragment">
+    tools:context=".ui.motive.MotiveFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
         android:id="@+id/rvMotive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <ProgressBar
+        android:id="@+id/pgProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

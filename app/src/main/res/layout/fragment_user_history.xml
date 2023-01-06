@@ -1,23 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".history.UserHistoryFragment">
+    tools:context=".ui.history.HistoryFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/txTitle"
-        android:layout_width="match_parent"
+
+    <ProgressBar
+        android:id="@+id/pgProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Sejarah Indonesia Zaman" />
-
-    <com.codesgood.views.JustifiedTextView
-        android:layout_marginTop="40sp"
-        android:id="@+id/txDesc"
+        android:layout_gravity="center"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvHistory"
+        app:cardCornerRadius="16dp"
+        android:layout_margin="25dp"
+        app:cardBackgroundColor="@color/colorSecondary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/txTitle"
+                    android:fontFamily="@font/soin"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:text="Sejarah Batik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@drawable/batik_for_history"/>
+                <com.codesgood.views.JustifiedTextView
+                    android:layout_margin="25dp"
+                    android:layout_marginTop="40sp"
+                    android:id="@+id/txDesc"
+                    android:textColor="@color/black"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
+</FrameLayout>

@@ -9,11 +9,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/batik_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatikNusantara">
+        <activity android:name="com.dimaszulfa.batiknusantara.ui.puzzle.NPuzzleActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

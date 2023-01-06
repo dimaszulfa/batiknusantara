@@ -38,9 +38,6 @@
             android:id="@+id/action_homeFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_locationFragment"
-            app:destination="@id/locationFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
         <action
@@ -61,20 +58,27 @@
         <action
             android:id="@+id/action_homeFragment_to_dashboardAdminFragment"
             app:destination="@id/dashboardAdminFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userVarietyFragment"
+            app:destination="@id/userVarietyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_quizFragment2"
+            app:destination="@id/quizFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_NPuzzleActivity"
+            app:destination="@id/NPuzzleActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_treatmentFragment"
+            app:destination="@id/treatmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.dimaszulfa.batiknusantara.QuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizQuestionsFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment
-        android:id="@+id/locationFragment"
-        android:name="com.dimaszulfa.batiknusantara.LocationFragment"
-        android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
-    <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.dimaszulfa.batiknusantara.about.AboutFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
@@ -117,7 +121,7 @@
         tools:layout="@layout/fragment_motive" />
     <fragment
         android:id="@+id/userMotiveFragment"
-        android:name="com.dimaszulfa.batiknusantara.motive.UserMotiveFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.motive.MotiveFragment"
         android:label="fragment_user_motive"
         tools:layout="@layout/fragment_user_motive" >
         <action
@@ -126,7 +130,7 @@
     </fragment>
     <fragment
         android:id="@+id/userHistoryFragment"
-        android:name="com.dimaszulfa.batiknusantara.history.UserHistoryFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.history.HistoryFragment"
         android:label="fragment_user_history"
         tools:layout="@layout/fragment_user_history" />
     <fragment
@@ -154,9 +158,68 @@
     </dialog>
     <fragment
         android:id="@+id/userMotiveDetail"
-        android:name="com.dimaszulfa.batiknusantara.motive.UserMotiveDetail"
+        android:name="com.dimaszulfa.batiknusantara.ui.motive.MotiveDetail"
         android:label="fragment_user_motive_detail"
-        tools:layout="@layout/fragment_user_motive_detail">
+        tools:layout="@layout/fragment_user_motive_detail"
+        >
+        <argument
+            android:name="title"
+            app:argType="string"/>
+        <argument
+            android:name="description"
+            app:argType="string"/>
+        <argument
+            android:name="image"
+            app:argType="string"/>
+        <argument
+        android:name="category"
+        app:argType="string"/>
+        <argument
+            android:name="province"
+            app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/userVarietyFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.variety.UserVarietyFragment"
+        android:label="fragment_user_variety"
+        tools:layout="@layout/fragment_user_variety" />
+    <fragment
+        android:id="@+id/quizFragment2"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizFragment"
+        android:label="QuizFragment" >
+        <action
+            android:id="@+id/action_quizFragment2_to_quizQuestionsFragment"
+            app:destination="@id/quizQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizQuestionsFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.QuizQuestionsFragment"
+        android:label="fragment_quiz_questions"
+        tools:layout="@layout/fragment_quiz_questions" >
+        <action
+            android:id="@+id/action_quizQuestionsFragment_to_resultQuizFragment"
+            app:destination="@id/resultQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultQuizFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.quiz.ResultQuizFragment"
+        android:label="fragment_result_quiz"
+        tools:layout="@layout/fragment_result_quiz" >
+        <argument
+            android:name="accuracy"
+            app:argType="string"/>
+        <argument
+            android:name="score"
+            app:argType="string"/>
+    </fragment>
+    <activity
+        android:id="@+id/NPuzzleActivity"
+        android:name="com.dimaszulfa.batiknusantara.ui.puzzle.NPuzzleActivity"
+        android:label="NPuzzleActivity" />
+    <fragment
+        android:id="@+id/treatmentFragment"
+        android:name="com.dimaszulfa.batiknusantara.ui.treatment.TreatmentFragment"
+        android:label="fragment_treatment"
+        tools:layout="@layout/fragment_treatment" />
 
 </navigation>
